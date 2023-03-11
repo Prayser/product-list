@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 25px;
+  justify-content: space-between;
+  padding: 27px 40px;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.headerTitle {
+  font-family: 'Open Sans', serif;
+  text-transform: capitalize;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+  color: #A2A2A2;
+}

@@ -1,0 +1,2 @@
+export const PRODUCT_LOCAL_STORAGE_KEY = 'products'
+export const PRODUCT_CARD_DESCRIPTION_LENGTH = 317

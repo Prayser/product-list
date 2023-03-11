@@ -1,0 +1,13 @@
+.searchInput {
+  padding: 8px 15px;
+
+  &:focus-within {
+    padding: 7px 14px;
+  }
+
+  label {
+    cursor: pointer;
+    margin-right: 10px;
+    line-height: 0;
+  }
+}

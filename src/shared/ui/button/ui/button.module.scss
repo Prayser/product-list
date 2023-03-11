@@ -1,0 +1,33 @@
+.button {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  background-color: transparent;
+  border: none;
+  padding: 7px 20px;
+  width: max-content;
+  height: auto;
+  cursor: pointer;
+}
+
+.filledButton {
+  background-color: #424242;
+  border-radius: 4px;
+
+  &:hover {
+    background: #959595;
+  }
+
+}
+
+.outlinedButton {
+  border: 2px solid #000000;
+  border-radius: 3px;
+  color: #333333;
+
+  &:hover {
+    border: 2px solid #959595;
+  }
+}

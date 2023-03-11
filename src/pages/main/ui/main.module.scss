@@ -1,0 +1,25 @@
+.mainPage {
+  padding: 0 40px 40px 40px;
+}
+
+.titleContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38px;
+    color: #000000;
+  }
+}
+
+.titleButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 14px;
+}

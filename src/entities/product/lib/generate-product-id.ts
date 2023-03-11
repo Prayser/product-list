@@ -1,0 +1,1 @@
+export const generateProductId = () => Math.floor(Math.random() * Math.floor(Math.random() * Date.now() / 10000000));
