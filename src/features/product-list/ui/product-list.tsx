@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import clsx from 'clsx';
+import { getProductsAsync, ProductCard, selectProducts } from 'entities/product';
+import { Loader } from 'shared/ui/loader';
+import { useAppDispatch, useAppSelector } from 'shared/lib/redux-toolkit/hooks';
 import cls from './product-list.module.scss';
-import { getProductsAsync, ProductCard, selectProducts } from '../../../entities/product';
-import { useAppDispatch, useAppSelector } from '../../../shared/lib/redux-toolkit/hooks';
-import { Loader } from '../../../shared/ui/loader';
 
 interface ProductListProps {
   search: string;
@@ -37,9 +37,11 @@ const ProductList = (props: ProductListProps) => {
 
   return (
     <ul className={clsx(cls.productList, className)}>
-      {filterProducts.map(product => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      {filterProducts.length === 0
+        ? <h3>Items not found</h3>
+        : filterProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
     </ul>
   );
 };

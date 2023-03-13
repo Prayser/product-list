@@ -10,6 +10,8 @@ interface LoaderProps {
 export const Loader = (props: LoaderProps) => {
   const { className } = props;
   return (
-    <LoaderIcon className={clsx(cls.loader, className)} />
+    <div className={clsx(cls.loader, className)}>
+      <LoaderIcon  />
+    </div>
   );
 };

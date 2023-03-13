@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { useSearchParams } from 'react-router-dom';
 import { ProductList } from 'features/product-list';
-import { CreateProductModal } from 'entities/product';
+import { ProductCreateModal } from 'entities/product';
 import { Header } from 'shared/ui/header';
 import { SearchInput } from 'shared/ui/search-input';
 import { Button } from 'shared/ui/button';
+import { useDebounce } from 'shared/lib/hooks/useDebounce';
 import cls from './main.module.scss';
-import { useDebounce } from '../../../shared/lib/hooks/useDebounce';
 
 
 const Main = () => {
@@ -56,7 +56,7 @@ const Main = () => {
         </div>
         <ProductList search={searchDebounce} />
       </main>
-      <CreateProductModal open={openCreateModal} onClose={handleCloseCreateModal} />
+      <ProductCreateModal open={openCreateModal} onClose={handleCloseCreateModal} />
     </>
   );
 };

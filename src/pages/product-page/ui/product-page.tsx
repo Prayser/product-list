@@ -1,7 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import clsx from 'clsx';
-import { getProductsAsync, selectProducts, ProductImage, deleteProductAsync } from 'entities/product';
+import {
+  getProductsAsync,
+  selectProducts,
+  ProductImage,
+  ProductDeleteModal,
+  ProductUpdateModal,
+} from 'entities/product';
 import { Header } from 'shared/ui/header';
 import { Button } from 'shared/ui/button';
 import { Loader } from 'shared/ui/loader';
@@ -20,6 +26,10 @@ const ProductPage = (props: ProductPageProps) => {
   const [init, setInit] = useState(false);
   const products = useAppSelector(selectProducts);
   const [isLoading, setIsLoading] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -42,9 +52,21 @@ const ProductPage = (props: ProductPageProps) => {
     navigate('/');
   }, []);
 
-  const handleDelete = useCallback(() => {
-    if (product) dispatch(deleteProductAsync(product.id));
-  }, [product]);
+  const handleOpenDeleteModal = useCallback(() => {
+    setOpenDeleteModal(true);
+  }, []);
+
+  const handleCloseDeleteModal = useCallback(() => {
+    setOpenDeleteModal(false);
+  }, []);
+
+  const handleOpenUpdateModal = useCallback(() => {
+    setOpenUpdateModal(true);
+  }, []);
+
+  const handleCloseUpdateModal = useCallback(() => {
+    setOpenUpdateModal(false);
+  }, []);
 
   return (
     <>
@@ -62,8 +84,8 @@ const ProductPage = (props: ProductPageProps) => {
                   <ProductImage size={300} />
                   <div className={cls.leftContentFooter}>
                     <div className={cls.buttons}>
-                      <Button>EDIT</Button>
-                      <DeleteButton onClick={handleDelete} />
+                      <Button onClick={handleOpenUpdateModal}>EDIT</Button>
+                      <DeleteButton onClick={handleOpenDeleteModal} />
                     </div>
                     <p className={cls.productPrice}>{product.price.toLocaleString('en-US', {
                       style: 'currency',
@@ -82,6 +104,9 @@ const ProductPage = (props: ProductPageProps) => {
           </section>
           : <Loader />}
       </main>
+      {product && <ProductDeleteModal id={product.id} open={openDeleteModal} onClose={handleCloseDeleteModal}
+                                      callback={handleBack} />}
+      {product && <ProductUpdateModal product={product} open={openUpdateModal} onClose={handleCloseUpdateModal} />}
     </>
   );
 };
